@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://JackerChan.gd" type="Script" id=1]
+[ext_resource path="res://StyleBoxFlat.tres" type="StyleBox" id=2]
+[ext_resource path="res://TitleFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ContentFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://DefaultTheme.tres" type="Theme" id=5]
+
+[node name="JackerChan" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoardsRequest" type="HTTPRequest" parent="."]
+
+[node name="ThreadsRequest" type="HTTPRequest" parent="."]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+custom_styles/bg = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 974.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_right = 964.0
+margin_bottom = 23.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 120.0
+margin_bottom = 22.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 3 )
+text = "Select Board"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpinBox" type="OptionButton" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 140.0
+margin_right = 756.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+theme = ExtResource( 5 )
+custom_fonts/font = ExtResource( 4 )
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 776.0
+margin_right = 964.0
+margin_bottom = 23.0
+theme = ExtResource( 5 )
+custom_fonts/font = ExtResource( 4 )
+text = "Refresh Board  Threads"
+
+[node name="ThreadList" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 964.0
+margin_bottom = 43.0
+custom_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -18.0
+rect_min_size = Vector2( 300, 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LinkButton" type="LinkButton" parent="HBoxContainer"]
+margin_right = 152.0
+margin_bottom = 20.0
+text = "Made By RisingThumb"
+underline = 1
+[connection signal="request_completed" from="BoardsRequest" to="." method="_on_BoardsRequest_request_completed"]
+[connection signal="request_completed" from="ThreadsRequest" to="." method="_on_ThreadsRequest_request_completed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LinkButton" to="." method="_on_LinkButton_pressed"]
