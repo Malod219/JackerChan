@@ -40,7 +40,7 @@ func _on_Button_pressed():
 		return
 	var boardId = $ScrollContainer/VBoxContainer/HBoxContainer/SpinBox.get_selected_id()
 	var newUrl="https://boards.4chan.org/"+boards[boardId]["board"]+"/catalog.json"
-	$ThreadsRequest.request(newUrl)
+	$ThreadsRequest.request(newUrl, PoolStringArray(['Access-Control-Allow-Origin']))
 
 func get_board():
 	var boardId = $ScrollContainer/VBoxContainer/HBoxContainer/SpinBox.get_selected_id()
@@ -66,8 +66,10 @@ func _on_ThreadsRequest_request_completed(_result, _response_code, _headers, bod
 				if "com" in thread:
 					var regex = RegEx.new()
 					regex.compile('<.*?>')
-					var cleantext=str(thread["com"].xml_unescape()).replace("<br>","\n")
+					var cleantext=str(thread["com"]).replace("<br>","\n")
 					cleantext=regex.sub(cleantext,"", true)
+					regex.compile('&#039;')
+					cleantext = regex.sub(cleantext,"'", true)
 					cleantext = cleantext.xml_unescape()
 					newBlock.addContentText(cleantext)
 	else:

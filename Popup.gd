@@ -24,8 +24,9 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 			if "com" in post:
 				var regex = RegEx.new()
 				regex.compile('<.*?>')
-				var cleantext=str(post["com"].xml_unescape()).replace("<br>","\n")
-				cleantext=regex.sub(cleantext,"", true)
+				var cleantext=str(post["com"]).replace("<br>","\n")
+				cleantext = regex.sub(cleantext,"", true)
+				regex.compile('&#039;')
 				cleantext = cleantext.xml_unescape()
 				newBlock.addContentText(cleantext)
 			$VBoxContainer/ThreadPosts.add_child(newBlock)

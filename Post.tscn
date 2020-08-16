@@ -14,7 +14,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_right = 1.0
+margin_right = 44.0
 margin_bottom = 21.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 2 )
@@ -24,14 +24,26 @@ uppercase = true
 
 [node name="Content" type="Label" parent="."]
 margin_top = 26.0
-margin_right = 1.0
+margin_right = 44.0
 margin_bottom = 43.0
 custom_fonts/font = ExtResource( 3 )
 autowrap = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_top = 48.0
-margin_right = 1.0
-margin_bottom = 52.0
+margin_right = 44.0
+margin_bottom = 71.0
+alignment = 1
+
+[node name="CopyButton" type="Button" parent="HBoxContainer"]
+margin_right = 44.0
+margin_bottom = 23.0
+text = "Copy"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = 76.0
+margin_right = 44.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 0, 4 )
 color = Color( 0.192157, 0.305882, 0.317647, 1 )
+[connection signal="pressed" from="HBoxContainer/CopyButton" to="." method="_on_CopyButton_pressed"]

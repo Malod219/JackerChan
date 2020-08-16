@@ -26,11 +26,11 @@ size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 904.0
-margin_bottom = 8.0
+margin_bottom = 23.0
 
 [node name="Title" type="Label" parent="VBoxContainer/HBoxContainer"]
 margin_top = 3.0
-margin_bottom = 5.0
+margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,15 +38,15 @@ __meta__ = {
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 4.0
 margin_right = 84.0
-margin_bottom = 8.0
+margin_bottom = 23.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 4
 text = "Exit"
 
 [node name="ThreadPosts" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 12.0
+margin_top = 27.0
 margin_right = 904.0
-margin_bottom = 12.0
+margin_bottom = 27.0
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
